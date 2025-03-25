@@ -9,7 +9,7 @@ const app = (0, express_1.default)();
 app.get("/", (req, res) => {
     res.send("WELCOME  to Node JS with Typescript & Express");
 });
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
     console.log("Express running at port " + port);
 });
