@@ -2,6 +2,9 @@
   "name": "odoo-node-api",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "23.x"
+  },
   "scripts": {
     "build": "rimraf dist && npx tsc",
     "prestart": "npm run build",
