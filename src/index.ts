@@ -9,6 +9,19 @@ app.get("/", (req: Request, res: Response) => {
   res.send("WELCOME  to Node JS with Typescript & Express");
 });
 
+app.get("/me", (req, res) => {
+
+  try {
+    const tmp = req.header('Authorization') ? req.header('Authorization') : '';
+    if( !tmp )
+      throw new Error('No authorization in header!')
+    res.send('Ok')
+    
+  }
+  catch (e: any) {
+    res.status(401).send(e.message)
+  }
+})
 app.post("/login", (req, res) => {
   try {
 
