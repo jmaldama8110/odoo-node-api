@@ -1,6 +1,10 @@
 
 import express, { Request, Response } from 'express';
 import "dotenv/config";
+import pool from './db/db';
+
+
+
 
 const app = express();
 app.use(express.json())
@@ -48,4 +52,25 @@ const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log("Express running at port " + port);
+  main();
 });
+
+
+type User = {
+  id: number;
+  email: string;
+  name?: string;
+};
+
+async function main() {
+  try {
+    const result = await pool.query<User>('SELECT * FROM public.res_users');
+    console.log('Usuarios:', result.rows.length);
+  } catch (err) {
+    console.error('Error ejecutando la consulta:', err);
+  } finally {
+    await pool.end();
+  
+  }
+}
+
