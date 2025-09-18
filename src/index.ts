@@ -1,6 +1,7 @@
 
 import express, { Request, Response } from 'express';
 import "dotenv/config";
+import loanProductsRouter from './loanProducts';
 
 const app = express();
 app.use(express.json())
@@ -8,6 +9,9 @@ app.use(express.json())
 app.get("/", (req: Request, res: Response) => {
   res.send("WELCOME  to Node JS with Typescript & Express");
 });
+
+// Loan Products module
+app.use('/loan-products', loanProductsRouter);
 
 app.get("/me", (req, res) => {
 
